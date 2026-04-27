@@ -24,7 +24,7 @@ for (let col = -TILE_RADIUS; col <= TILE_RADIUS; col++) {
     [ 0,     col * EFFECTIVE_W         ],
     [ IMG_H, col * EFFECTIVE_W + IMG_W ]
   ];
-  L.imageOverlay('map.svg', tileBounds, {
+  L.imageOverlay('public\map.svg', tileBounds, {
     interactive: false,
     className: 'map-tile'
   }).addTo(map);
