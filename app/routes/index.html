@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Milsim Command UI</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- LEFT SIDEBAR -->
+  <div id="sidebar">
+    <h2>OPS FEED</h2>
+
+    <div class="mission" onclick="selectMission('Alpha')">OP-ALPHA</div>
+    <div class="mission" onclick="selectMission('Bravo')">OP-BRAVO</div>
+    <div class="mission" onclick="selectMission('Nightfall')">OP-NIGHTFALL</div>
+  </div>
+
+  <!-- MAP -->
+  <div id="map">
+    <div class="grid-overlay" id="grid"></div>
+    <div class="scale-overlay"></div>
+    <div id="scanline"></div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div id="panel">
+    <h2 id="missionTitle">NO SIGNAL</h2>
+    <p id="missionInfo">Select an operation to load tactical data.</p>
+  </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="main.js"></script>
+
+</body>
+</html>
