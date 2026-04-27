@@ -1,0 +1,192 @@
+:root {
+  --mfd-green: #00ff66;
+}
+
+body {
+  margin: 0;
+  font-family: Consolas, monospace;
+  background: #0f0f0f;
+  color: var(--mfd-green);
+  overflow: hidden;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  height: 100vh;
+  position: relative;
+}
+
+/* ── Sidebar ── */
+#sidebar {
+  background: transparent;
+  padding: 15px;
+  border-right: 1px solid rgba(0,255,102,0.25);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 260px;
+  z-index: 2000;
+  box-sizing: border-box;
+}
+
+#sidebar h2 {
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(0,255,102,0.3);
+  padding-bottom: 8px;
+  margin-top: 0;
+}
+
+.mission {
+  padding: 8px;
+  margin-bottom: 8px;
+  background: rgba(0, 255, 102, 0.05);
+  border: 1px solid rgba(0,255,102,0.15);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mission:hover {
+  background: rgba(0, 255, 102, 0.1);
+  border-color: var(--mfd-green);
+  box-shadow: 0 0 8px rgba(0,255,102,0.4);
+}
+
+.mission::before {
+  content: "> ";
+}
+
+/* ── Map ── */
+#map {
+  width: 100%;
+  height: 100%;
+  background: #0f0f0f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* ── Mission Panel ── */
+#panel {
+  background: transparent;
+  padding: 15px;
+  border-left: 1px solid rgba(0,255,102,0.25);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  z-index: 2000;
+  box-sizing: border-box;
+}
+
+#panel h2 {
+  font-size: 14px;
+  border-bottom: 1px solid rgba(0,255,102,0.3);
+  padding-bottom: 8px;
+  margin-top: 0;
+}
+
+#panel p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── Hide Leaflet UI ── */
+.leaflet-control-zoom,
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* ── SVG Map Tile ── */
+.map-tile img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── Grid Overlay ── */
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.01;
+  background-image:
+    linear-gradient(var(--mfd-green) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mfd-green) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.scale-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+  opacity: 0.02;
+  background-image:
+    repeating-linear-gradient(to right, var(--mfd-green) 0px, var(--mfd-green) 1px, transparent 2px, transparent 120px),
+    repeating-linear-gradient(to bottom, var(--mfd-green) 0px, var(--mfd-green) 1px, transparent 2px, transparent 120px);
+}
+
+/* ── Vignette ── */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 65%, rgba(0,255,102,0.1) 100%);
+}
+
+/* ── Scanlines ── */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0,255,102,0.05) 3px
+  );
+}
+
+/* ── Horizontal Scan Line ── */
+@keyframes scanline {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+
+#scanline {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,255,102,0.15) 20%,
+    rgba(0,255,102,0.6) 50%,
+    rgba(0,255,102,0.15) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(0,255,102,0.5), 0 0 20px rgba(0,255,102,0.2);
+  pointer-events: none;
+  z-index: 1002;
+  animation: scanline 6s linear infinite;
+}
